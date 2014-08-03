@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <consignments>
+    <consignment transport_agreement="1053">
+    <product>tg_dpd_innland</product>
+    <parts>
+        <consignee>
+            <name>Juan Ponce de Leon</name>
+            <country>NO</country>
+            <postcode>1337</postcode>
+            <city>Sandvika</city>
+        </consignee>
+    </parts>
+    <items>
+        <item type="PK" amount="1" weight="2" volume="3" description="Something"/>
+    </items>
+    </consignment>
+ </consignments>
