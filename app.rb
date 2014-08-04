@@ -2,36 +2,16 @@ require 'sinatra'
 require 'json'
 require 'shopify_api'
 require 'HTTParty'
-require 'dotenv'
 require 'builder'
-
-Dotenv.load
-key = ENV['cargonizer_key']
-managership = ENV['cargonizer_managership']
 
 class CargoConnectorApp < Sinatra::Base
 
   get '/' do
     "Hello World"
-  end
-
-  post '/cargonizer' do
-  	request.body.rewind
-  	@order = CargoConnectorHelper::parse_json(request.body.read)
-
-		f = ShopifyAPI::Fulfillment.new(@order)
-		puts f
-
-  	if @f.nil?
-  		halt 400, 'Not valid shopify json'
-  	else
-  		status 200
-  	end
-  end
-
-  get '/test' do
+    #key = ENV['cargonizer_key']
+    #managership = ENV['cargonizer_managership']
     #CargoConnectorHelper::get_transport_agreements
-    CargoConnectorHelper::create_consignment
+    #CargoConnectorHelper::create_consignment
     status 200
   end
 
