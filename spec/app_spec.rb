@@ -24,7 +24,7 @@ describe "Cargonizer integration" do
     shopify_hash = JSON.parse(file)
     transport_agreement = { "id" => 1053, "product" => "tg_dpd_innland" }
     xml = CargoConnectorHelper::shopify_hash_to_cargonizer_xml(shopify_hash, transport_agreement)
-    expect(xml).to exist
+    expect(xml).to start_with "<?xml"
   end
 
   it "should be able to send generated xml to Cargonizer and recieve 201 Created response" do
@@ -36,11 +36,10 @@ describe "Cargonizer integration" do
     managership = "1094"
 
     xml = CargoConnectorHelper::shopify_hash_to_cargonizer_xml(shopify_hash, transport_agreement)
-
     response = CargoConnectorHelper::create_consignment(key, managership, url, xml)
 
-    puts response.body
     expect(response.code).to eq(201)
+    expect(response.body).to start_with "<?xml"
   end
 
 end

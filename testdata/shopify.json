@@ -68,29 +68,6 @@
             "product_exists": true,
             "fulfillable_quantity": 1,
             "tax_lines": []
-        },
-        {
-            "fulfillment_service": "manual",
-            "fulfillment_status": null,
-            "gift_card": false,
-            "grams": 500,
-            "id": 98765,
-            "price": "29.95",
-            "product_id": 12345,
-            "quantity": 1,
-            "requires_shipping": true,
-            "sku": "SKU2006-020",
-            "taxable": true,
-            "title": "Wire Cutter",
-            "variant_id": 54321,
-            "variant_title": null,
-            "vendor": null,
-            "name": "Wire Cutter",
-            "variant_inventory_management": "",
-            "properties": [],
-            "product_exists": true,
-            "fulfillable_quantity": 1,
-            "tax_lines": []
         }
     ],
     "shipping_lines": [
@@ -120,7 +97,7 @@
         "province_code": "KY"
     },
     "shipping_address": {
-        "address1": "Schweigaards Gate 1",
+        "address1": "Schweigaards Gate 48B",
         "address2": null,
         "city": "Oslo",
         "company": "Shipping Company",

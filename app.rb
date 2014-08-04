@@ -50,7 +50,7 @@ class CargoConnectorHelper
                   xml.name String(hash["shipping_address"]["first_name"]) + String(hash["shipping_address"]["last_name"])
                   xml.address1 hash["shipping_address"]["address1"]
                   xml.address2 hash["shipping_address"]["address2"]
-                  xml.country hash["shipping_address"]["country"]
+                  xml.country hash["shipping_address"]["country_code"]
                   xml.postcode hash["shipping_address"]["zip"]
                   xml.city hash["shipping_address"]["city"]
                   xml.phone hash["shipping_address"]["phone"]
@@ -59,7 +59,7 @@ class CargoConnectorHelper
           xml.items do
               @items = hash["line_items"]
               @items.each do |item|
-                 xml.item :type => item["name"], :amount => item["price"], :weight => item["grams"], :description => item["sku"]
+                 xml.item :type => "PK", :amount => 1, :weight => (item["grams"] / 1000), :description => item["name"] + item["sku"]
               end
           end
       end
