@@ -1,6 +1,7 @@
+require 'rubygems'
 require 'sinatra'
 require 'json'
-require 'HTTParty'
+require 'httparty'
 require 'builder'
 require './cargo_connector_helper.rb'
 
