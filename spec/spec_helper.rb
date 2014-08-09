@@ -1,5 +1,6 @@
 require 'rack/test'
 require './app.rb'
+require './cargo_connector_helper.rb'
 
 ENV['RACK_ENV'] = 'test'
 

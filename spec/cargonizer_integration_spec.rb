@@ -42,4 +42,16 @@ describe 'The Cargonizer integration' do
     expect(response.body).to start_with '<?xml'
   end
 
+  it 'should respond with a 200 HTTP status code if coming from a valid shopify webhook' do
+    file = File.read('testdata/shopify.json')
+    data = JSON.parse(file)
+    digest = OpenSSL::Digest.new('sha256')
+    calculated_hmac = Base64.encode64(OpenSSL::HMAC.digest(digest, 'my_shared_secret', data.to_json)).strip
+
+    headers = { 'CONTENT_TYPE' => 'application/json', 'X-Shopify-Hmac-SHA256' => calculated_hmac}
+    post '/', data.to_json, headers
+
+    expect(last_response.status).to equal(200)
+  end
+
 end
