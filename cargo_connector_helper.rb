@@ -20,7 +20,7 @@ class CargoConnectorHelper
         xml.items do
           @items = hash['line_items']
           @items.each do |item|
-            xml.item :type => 'PK', :amount => 1, :weight => (item['grams'] / 1000), :description => item['name'] + item['sku']
+            xml.item :type => 'PK', :amount => 1, :weight => 0.35, :description => item['name'] + item['sku']
           end
         end
       end
