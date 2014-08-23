@@ -26,6 +26,8 @@ class CargoConnectorApp < Sinatra::Base
     xml = CargoConnectorHelper::shopify_hash_to_cargonizer_xml(shopify_hash, transport_agreement)
     response = CargoConnectorHelper::create_consignment(ENV['CARGONIZER_KEY'], ENV['CARGONIZER_MANAGERSHIP'], ENV['CARGONIZER_URL'], xml)
 
+    puts response
+
     halt 502 unless response.code == 201
 
     status 200
