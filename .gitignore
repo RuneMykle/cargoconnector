@@ -3,3 +3,4 @@ tmp
 .env
 mails
 .idea/
+env.rb

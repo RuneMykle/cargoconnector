@@ -16,6 +16,7 @@ describe 'The Cargonizer integration' do
     managership = '1094'
     xml = File.read('testdata/consignment.xml')
     response = CargoConnectorHelper::create_consignment(key, managership, url, xml)
+    puts response
     expect(response.code).to eq(201)
   end
 

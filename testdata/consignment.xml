@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
  <consignments>
-    <consignment transport_agreement="1053">
-    <product>tg_dpd_innland</product>
+    <consignment transport_agreement="1055">
+    <product>bring_minipakke</product>
     <parts>
         <consignee>
             <name>Juan Ponce de Leon</name>
@@ -11,7 +11,7 @@
         </consignee>
     </parts>
     <items>
-        <item type="PK" amount="1" weight="2" volume="3" description="Something"/>
+        <item type="PK" amount="1" weight="0.35" length="30" height="2" width="20" />
     </items>
     </consignment>
  </consignments>
