@@ -1,3 +1,3 @@
 require './app'
-stdout.sync = true
+$stdout.sync = true
 run CargoConnectorApp
