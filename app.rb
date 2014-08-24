@@ -22,6 +22,7 @@ class CargoConnectorApp < Sinatra::Base
     # noinspection RubyStringKeysInHashInspection
     transport_agreement = { 'id' => ENV['CARGONIZER_AGREEMENT_ID'], 'product' => ENV['CARGONIZER_AGREEMENT_PRODUCT']}
     shopify_hash = JSON.parse(data)
+    puts 'Prosesserer ordre ' + shopify_hash['name']
 
     xml = CargoConnectorHelper::shopify_hash_to_cargonizer_xml(shopify_hash, transport_agreement)
     response = CargoConnectorHelper::create_consignment(ENV['CARGONIZER_KEY'], ENV['CARGONIZER_MANAGERSHIP'], ENV['CARGONIZER_URL'], xml)
