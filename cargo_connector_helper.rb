@@ -1,6 +1,7 @@
 class CargoConnectorHelper
 
   def self.shopify_hash_to_cargonizer_xml(hash, transport_agreement)
+  	puts hash
     xml = Builder::XmlMarkup.new(:target=>'', :indent=>2) #:target=>$stdout, :indent=>2
     xml.instruct! :xml, :version=> '1.0', :encoding=> 'UTF-8'
     xml.consignments do
