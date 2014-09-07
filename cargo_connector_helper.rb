@@ -1,15 +1,22 @@
 class CargoConnectorHelper
 
-  def self.store_message_in_db(json)
-    conn = PG.connect( dbname: 'cargoconnector' )
-    conn.exec( "SELECT * FROM pg_stat_activity" ) do |result|
-      puts "     PID | User             | Query"
-      result.each do |row|
-        puts " %7d | %-16s | %s " %
-          row.values_at('procpid', 'usename', 'current_query')
-      end
-    end
-  end
+  #def self.check_if_message_exists(order)
+  #  conn = PG.connect(:dbname => ENV['DATABASE_URL'])
+  #  conn.prepare('store_message', 'INSERT INTO messages (order_id, message, processed) values ($1, $2, $3)')
+  #  conn.exec_prepared('store_message', [order['name'], order, 'false' ])
+  #end
+
+  #def self.store_message_in_db(order)
+  #  conn = PG.connect(:dbname => ENV['DATABASE_URL'])
+  #  conn.prepare('store_message', 'INSERT INTO messages (order_id, message, processed) values ($1, $2, $3)')
+  #  conn.exec_prepared('store_message', [order['name'], order, 'false' ])
+  #end
+
+  #def self.set_message_as_processed(order)
+  #  conn = PG.connect(:dbname => ENV['DATABASE_URL'])
+  #  conn.prepare('store_message', 'INSERT INTO messages (order_id, message, processed) values ($1, $2, $3)')
+  #  conn.exec_prepared('store_message', [order['name'], order, 'false' ])
+  #end
 
   def self.shopify_hash_to_cargonizer_xml(hash, transport_agreement)
     xml = Builder::XmlMarkup.new(:target=>'', :indent=>2) #:target=>$stdout, :indent=>2
@@ -19,7 +26,7 @@ class CargoConnectorHelper
         xml.product transport_agreement['product']
         xml.parts do
           xml.consignee do
-            xml.name String(hash['shipping_address']['first_name']) + " " + String(hash['shipping_address']['last_name'])
+            xml.name String(hash['shipping_address']['first_name']) + ' ' + String(hash['shipping_address']['last_name'])
             xml.address1 hash['shipping_address']['address1']
             xml.address2 hash['shipping_address']['address2']
             xml.country hash['shipping_address']['country_code']
@@ -30,9 +37,7 @@ class CargoConnectorHelper
         end
         xml.items do
           @items = hash['line_items']
-          @items.each do |item|
-            xml.item :type => 'PK', :amount => 1, :weight => 0.35, :description => item['name'] + item['sku']
-          end
+          xml.item :type => 'PK', :amount => 1, :weight => 0.35, :description => @items.inject('') { |res, el| res = res + el['name'] + el['sku'] + '. ' }
         end
       end
     end

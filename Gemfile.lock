@@ -13,7 +13,6 @@ GEM
       multi_xml (>= 0.5.2)
     json (1.8.1)
     multi_xml (0.5.5)
-    pg (0.17.1)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -45,7 +44,6 @@ DEPENDENCIES
   dotenv-rails
   httparty
   json
-  pg
   rack
   rack-test
   rspec
