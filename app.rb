@@ -3,6 +3,7 @@ require 'sinatra'
 require 'json'
 require 'httparty'
 require 'builder'
+require 'pg'
 require './cargo_connector_helper.rb'
 require './env' if File.exists?('env.rb')
 
@@ -19,7 +20,7 @@ class CargoConnectorApp < Sinatra::Base
 
     #halt 403 unless verified
 
-    # noinspection RubyStringKeysInHashInspection
+    puts data
     transport_agreement = { 'id' => ENV['CARGONIZER_AGREEMENT_ID'], 'product' => ENV['CARGONIZER_AGREEMENT_PRODUCT']}
     shopify_hash = JSON.parse(data)
     puts 'Prosesserer ordre ' + shopify_hash['name']

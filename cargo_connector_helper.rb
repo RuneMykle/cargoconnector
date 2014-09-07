@@ -1,7 +1,17 @@
 class CargoConnectorHelper
 
+  def self.store_message_in_db(json)
+    conn = PG.connect( dbname: 'cargoconnector' )
+    conn.exec( "SELECT * FROM pg_stat_activity" ) do |result|
+      puts "     PID | User             | Query"
+      result.each do |row|
+        puts " %7d | %-16s | %s " %
+          row.values_at('procpid', 'usename', 'current_query')
+      end
+    end
+  end
+
   def self.shopify_hash_to_cargonizer_xml(hash, transport_agreement)
-  	puts hash
     xml = Builder::XmlMarkup.new(:target=>'', :indent=>2) #:target=>$stdout, :indent=>2
     xml.instruct! :xml, :version=> '1.0', :encoding=> 'UTF-8'
     xml.consignments do
@@ -9,7 +19,7 @@ class CargoConnectorHelper
         xml.product transport_agreement['product']
         xml.parts do
           xml.consignee do
-            xml.name String(hash['shipping_address']['first_name']) + String(hash['shipping_address']['last_name'])
+            xml.name String(hash['shipping_address']['first_name']) + " " + String(hash['shipping_address']['last_name'])
             xml.address1 hash['shipping_address']['address1']
             xml.address2 hash['shipping_address']['address2']
             xml.country hash['shipping_address']['country_code']
