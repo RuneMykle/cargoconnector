@@ -15,12 +15,9 @@ class CargoConnectorApp < Sinatra::Base
     data = request.body.read
 
     #shopify = request.env['X-Shopify-Hmac-SHA256']
-
     #verified = CargoConnectorHelper::verify_webhook(data, shopify, ENV['SHARED_SECRET'])
-
     #halt 403 unless verified
 
-    puts data
     transport_agreement = { 'id' => ENV['CARGONIZER_AGREEMENT_ID'], 'product' => ENV['CARGONIZER_AGREEMENT_PRODUCT']}
     shopify_hash = JSON.parse(data)
 
