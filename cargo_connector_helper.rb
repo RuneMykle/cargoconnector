@@ -37,7 +37,7 @@ class CargoConnectorHelper
         end
         xml.items do
           @items = hash['line_items']
-          xml.item :type => 'PK', :amount => 1, :weight => 0.35, :description => @items.inject('') { |res, el| res = res + el['name'] + el['sku'] + '. ' }
+          xml.item :type => 'PK', :amount => 1, :weight => 0.35, :description => @items.inject('') { |res, el| res = res + el['name'] + ' / ' }
         end
       end
     end

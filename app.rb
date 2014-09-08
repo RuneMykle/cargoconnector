@@ -13,7 +13,7 @@ class CargoConnectorApp < Sinatra::Base
 
     request.body.rewind
     data = request.body.read
-    
+
     #shopify = request.env['X-Shopify-Hmac-SHA256']
 
     #verified = CargoConnectorHelper::verify_webhook(data, shopify, ENV['SHARED_SECRET'])
